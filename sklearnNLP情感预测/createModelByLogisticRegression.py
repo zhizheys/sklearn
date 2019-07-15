@@ -27,8 +27,15 @@ print('train sentence is:',sentence_train)
 print('train label is:', y_train)
 
 from sklearn.feature_extraction.text import CountVectorizer
+import pickle
+
 vectorizer = CountVectorizer()
 vectorizer.fit(sentence_train)
+
+# 保存经过fit的vectorizer 词向量模型,预测时用来对文字词向量化
+feature_path = './models/vectorizer_wordModel.pkl'
+with open(feature_path, 'wb') as fw:
+    pickle.dump(vectorizer.vocabulary_, fw)
 
 X_train = vectorizer.transform(sentence_train)
 X_text = vectorizer.transform(sentence_test)
@@ -40,6 +47,12 @@ from sklearn.linear_model import LogisticRegression
 
 classifier = LogisticRegression()
 classifier.fit(X_train,y_train)
+
+#保存情感分类模型
+predictModel_path = './models/logicPredictModel.pkl'
+with open(predictModel_path, 'wb') as fw:
+    pickle.dump(classifier, fw)
+
 score = classifier.score(X_text,y_test)
 
 print("train Logist score is: ",score)
