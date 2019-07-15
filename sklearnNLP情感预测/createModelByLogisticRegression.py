@@ -1,3 +1,6 @@
+
+#通过sklearn 结合逻辑回归做简单的传统机器学习，进行文本预测，准确率大概0.8
+
 import pandas as pd
 filepath_dict = {
     'yelp':'./yelp_labelled.txt',
