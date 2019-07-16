@@ -9,6 +9,9 @@ http://www.96e.cc/5129414/20181101A09ZPL00.html
 https://cloud.tencent.com/developer/news/341640
 
 
+英语原文
+https://realpython.com/python-keras-text-classification/
+
 
 
 This dataset was created for the Paper 'From Group to Individual Labels using Deep Features', Kotzias et. al,. KDD 2015
