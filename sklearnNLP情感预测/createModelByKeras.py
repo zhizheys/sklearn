@@ -79,27 +79,7 @@ print("Testing loss: {:.4f}".format(loss))
 
 
 
-#show chart
-import matplotlib.pyplot as plt
-plt.style.use('ggplot')
-
-def plot_history(history):
-    acc = history.history['acc']
-    val_acc = history.history['val_acc']
-    loss = history.history['loss']
-    val_loss = history.history['val_loss']
-    x = range(1, len(acc) + 1)
-
-    plt.figure(figsize=(12, 5))
-    plt.subplot(1, 2, 1)
-    plt.plot(x, acc, 'b', label='Training acc')
-    plt.plot(x, val_acc, 'r', label='Validation acc')
-    plt.title('Training and validation accuracy')
-    plt.legend()
-    plt.subplot(1, 2, 2)
-    plt.plot(x, loss, 'b', label='Training loss')
-    plt.plot(x, val_loss, 'r', label='Validation loss')
-    plt.title('Training and validation loss')
-    plt.legend()
+#显示图像表格进行分析,不知道是什么原因， 目前只能在debug下才会显示图像表格
+from analystChart import plot_history
 
 plot_history(history)
