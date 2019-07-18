@@ -22,7 +22,7 @@ y = df_yelp['label'].values
 
 print("-----------------------------get data success")
 
-sentence_train,sentence_test,y_train,y_test = train_test_split(sentences,y,test_size=0.25,random_state=100)
+sentence_train,sentence_test,y_train_label,y_test_label = train_test_split(sentences,y,test_size=0.25,random_state=100)
 
 #print('train sentence is:',sentence_train)
 #print('train label is:', y_train)
@@ -42,19 +42,25 @@ X_train = vectorizer.transform(sentence_train)
 X_test = vectorizer.transform(sentence_test)
 
 #对标签编码
-from sklearn.preprocessing import LabelEncoder
-le = LabelEncoder()
-le.fit(y)
+all_lable = []
+all_lable.extend(y_train_label)
+all_lable.extend(y_test_label)
 
-y_train =le.transform(y_train)
-y_test = le.transform(y_test)
+from sklearn.preprocessing import LabelEncoder
+#le = LabelEncoder()
+le  =  CountVectorizer()
+le.fit(all_lable)
+
+y_train =le.transform(y_train_label)
+y_test = le.transform(y_test_label)
 
 #print('X_train is:' ,X_train)
 #print('X_test is:' ,X_test)
 
-#print(X_train.shape)
+print("x train content shape: ",X_train.shape)
+print("y train content shape: ",y_train.shape)
 #print(X_train.shape[0])
-print(X_train.shape[1])
+#print(X_train.shape[1])
 
 from keras.models import Sequential
 from keras import layers
@@ -63,7 +69,9 @@ input_dim = X_train.shape[1]
 
 model = Sequential()
 model.add(layers.Dense(10,input_dim=input_dim,activation='relu'))
-model.add(layers.Dense(1,activation='softmax'))
+#408 是标签向量化后的维度
+model.add(layers.Dense(408,activation='sigmoid'))
+#model.add(layers.Dense(1,activation='sigmoid'))
 
 model.compile(loss='binary_crossentropy',
               optimizer='adam',
@@ -92,6 +100,6 @@ print('------------end fit',datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'
 
 
 #显示图像表格进行分析,不知道是什么原因， 目前只能在debug下才会显示图像表格
-from analystChart import plot_history
+#from analystChart import plot_history
 
-plot_history(history)
+#plot_history(history)
