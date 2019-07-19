@@ -39,7 +39,7 @@ for j in df.index.values:
     fileInfo = sender + ' ' + subject + ' ' + fileName
 
     if fileInfo != None and fileInfo.strip() != '' and deliveryId != None and deliveryId.strip() != '':
-        temp={'fileInfo':fileInfo.strip(),'deliveryId':deliveryId.strip()}
+        temp={'fileInfo':fileInfo.lower().strip(),'deliveryId':deliveryId.lower().strip()}
         targetData.append(temp)
 
 
@@ -60,7 +60,7 @@ for k in targetData:
 
 import csv
 
-#python2可以用file替代open
+
 with open(path,"w",newline='',encoding='utf-8') as csvfile:
     writer = csv.writer(csvfile)
 

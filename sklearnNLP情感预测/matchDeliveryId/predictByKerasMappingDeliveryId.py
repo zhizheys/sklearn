@@ -6,7 +6,7 @@
 import pickle
 from sklearn.feature_extraction.text import CountVectorizer
 from keras.models import  load_model
-import numpy as np
+import utilHelpe
 
 def predictInfo(fileInfo):
 
@@ -52,9 +52,28 @@ def predictInfo(fileInfo):
 
     return  targetLabel,maxSimilar
 
+
+def createContentInfo(strArray):
+    contentInfo=''
+    if strArray != None and len(strArray) > 0:
+        for j in strArray:
+            j = utilHelpe.removeSpecialCharacter(j)
+            j = utilHelpe.removeStopWord(j)
+            contentInfo = contentInfo + ' ' + j
+
+    return contentInfo.strip().lower()
+
+
 if __name__ == '__main__':
 
-    fileInfo ='OUTTRA kneip com Daily transmission MAN INVESTMENTS MAN INVESTMENTS MORNINGSTAR csv'
+    sender ='ViewsEmailNotification.DoNotReply@jpmorgan.com'
+    subject = 'Schedule T-Rowe IMD  Completed on Thu 16-May-2019 13:15:30 AEST'
+    fileName = '_T-Rowe IMD_eff20190515_rel2019-05-16_130815.xls'
+    contentArray = [sender,subject,fileName]
+
+    fileInfo = createContentInfo(contentArray)
+    print("ccc -------",fileInfo)
+
     predictLabel,accuracy =predictInfo(fileInfo)
     print('predict label is: ',predictLabel)
     print('predict accuracy is: ', accuracy)
