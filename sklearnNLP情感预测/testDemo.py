@@ -1,12 +1,17 @@
 
 import utilHelpe
 
-a='_T-Rowe IMD_eff20190321_rel2019-03-22_133349.xls'
-b = utilHelpe.removeSpecialCharacter(a)
-print(b)
-c = utilHelpe.removeStopWord(b)
-print(c)
+from sklearn import preprocessing
+import numpy as np
+X = np.array(['PDN0004178'])
+
+print(X)
 
 
-# import nltk
-# nltk.download('punkt')
+scaler= preprocessing.MinMaxScaler(feature_range=(-1, 1)).fit(X)
+X_scaled = scaler.transform(X)
+
+print('-----------',X_scaled)
+X1=scaler.inverse_transform(X_scaled)
+print('========',X1)
+print('---------',X1[0, -1])

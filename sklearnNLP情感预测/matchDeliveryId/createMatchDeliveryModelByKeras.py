@@ -51,6 +51,10 @@ from sklearn.preprocessing import LabelEncoder
 le  =  CountVectorizer()
 le.fit(all_lable)
 
+label_path = './vectorizer_matchDeliveryId_labelModel.pkl'
+with open(label_path, 'wb') as fw:
+    pickle.dump(le.vocabulary_, fw)
+
 y_train =le.transform(y_train_label)
 y_test = le.transform(y_test_label)
 
@@ -97,7 +101,9 @@ print("Testing loss: {:.4f}".format(loss))
 
 print('------------end fit',datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
 
+model.save('./model_keras_matchDeliveryId.h5')
 
+print('------------save model end')
 
 #显示图像表格进行分析,不知道是什么原因， 目前只能在debug下才会显示图像表格
 #from analystChart import plot_history
