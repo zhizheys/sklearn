@@ -74,8 +74,7 @@ input_dim = X_train.shape[1]
 model = Sequential()
 model.add(layers.Dense(10,input_dim=input_dim,activation='relu'))
 #408 是标签向量化后的维度
-model.add(layers.Dense(408,activation='sigmoid'))
-#model.add(layers.Dense(1,activation='sigmoid'))
+model.add(layers.Dense(408,activation='softmax'))
 
 model.compile(loss='binary_crossentropy',
               optimizer='adam',

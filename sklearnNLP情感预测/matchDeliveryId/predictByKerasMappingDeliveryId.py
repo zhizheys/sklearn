@@ -61,19 +61,40 @@ def createContentInfo(strArray):
             j = utilHelpe.removeStopWord(j)
             contentInfo = contentInfo + ' ' + j
 
-    return contentInfo.strip().lower()
+    return contentInfo.strip()
 
+def createContentInfo2(sender,subject,fileName):
+    contentText=''
+    sender = utilHelpe.removeSpecialCharacter(sender)
+    sender = utilHelpe.removeStopWord(sender)
+
+    subject = utilHelpe.removeSpecialCharacter(subject)
+    subject = utilHelpe.removeStopWord(subject)
+
+    fileName = utilHelpe.removeSpecialCharacter(fileName)
+    fileName = utilHelpe.removeStopWord(fileName)
+
+    fileInfo = sender + ' ' + subject + ' ' + fileName
+
+    if fileInfo != None and fileInfo.strip() != '':
+        contentText=fileInfo.lower().strip()
+
+    return  contentText
 
 if __name__ == '__main__':
 
-    sender ='ViewsEmailNotification.DoNotReply@jpmorgan.com'
-    subject = 'Schedule T-Rowe IMD  Completed on Thu 16-May-2019 13:15:30 AEST'
-    fileName = '_T-Rowe IMD_eff20190515_rel2019-05-16_130815.xls'
+    sender ='multi.client.aibbny@bnymellon.com'
+    subject = 'Invesco STIC EUR Liquidity daily nav/factor/yield information - 03/25/2019'
+    fileName = 'INVESCO _Invesco STIC Global Series EUR_PRICESHEET_II_20190325.xls'
+
+    # sender = 'Ntebogeng.Mogagabe@investecmail.com'
+    # subject = 'Discovery and Investec Fund Distributions - Mar 2019'
+    # fileName = 'Investec Distributions - Mar 2019.xlsx'
+
     contentArray = [sender,subject,fileName]
 
     fileInfo = createContentInfo(contentArray)
-    print("ccc -------",fileInfo)
-
     predictLabel,accuracy =predictInfo(fileInfo)
     print('predict label is: ',predictLabel)
     print('predict accuracy is: ', accuracy)
+

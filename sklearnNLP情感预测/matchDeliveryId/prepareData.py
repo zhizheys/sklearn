@@ -22,10 +22,10 @@ targetData=[]
 
 for j in df.index.values:
     row_data = df.ix[j,['sender','subject','fileName','deliveryId']].to_dict()
-    sender = str(row_data['sender']) if row_data['sender'] !=None else ''
-    subject = str(row_data['subject']) if row_data['subject'] !=None else ''
-    fileName = str(row_data['fileName']) if row_data['fileName'] !=None else ''
-    deliveryId = row_data['deliveryId']
+    sender = str(row_data['sender']).lower() if row_data['sender'] !=None else ''
+    subject = str(row_data['subject']).lower() if row_data['subject'] !=None else ''
+    fileName = str(row_data['fileName']).lower() if row_data['fileName'] !=None else ''
+    deliveryId = str(row_data['deliveryId']).lower() if row_data['deliveryId'] !=None else ''
 
     sender = utilHelpe.removeSpecialCharacter(sender)
     sender = utilHelpe.removeStopWord(sender)
@@ -39,7 +39,7 @@ for j in df.index.values:
     fileInfo = sender + ' ' + subject + ' ' + fileName
 
     if fileInfo != None and fileInfo.strip() != '' and deliveryId != None and deliveryId.strip() != '':
-        temp={'fileInfo':fileInfo.lower().strip(),'deliveryId':deliveryId.lower().strip()}
+        temp={'fileInfo':fileInfo.strip(),'deliveryId':deliveryId.strip()}
         targetData.append(temp)
 
 
