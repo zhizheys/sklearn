@@ -38,7 +38,7 @@ for j in df.index.values:
 
     fileInfo = sender + ' ' + subject + ' ' + fileName
 
-    if fileInfo != None and fileInfo.strip() != '' and deliveryId != None and deliveryId.strip() != '':
+    if fileInfo != None and fileInfo.strip() != '' and len(fileInfo.strip()) >0 and deliveryId != None and deliveryId.strip() != '' and len(deliveryId.strip()) > 0:
         temp={'fileInfo':fileInfo.strip(),'deliveryId':deliveryId.strip()}
         targetData.append(temp)
 

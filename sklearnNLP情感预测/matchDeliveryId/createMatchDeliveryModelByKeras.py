@@ -3,22 +3,18 @@
 #通过keras，进行文本预测，
 import  datetime
 import pandas as pd
-filepath_dict = {
-    'yelp':'./data.csv'}
 
-df_list = []
+filepath = './data.csv'
+df = pd.read_csv(filepath,names=['label','sentence'],sep=',')
 
-for source,filepath in filepath_dict.items():
-    df = pd.read_csv(filepath,names=['label','sentence'],sep=',')
-    df['source'] = source
-    df_list.append(df)
+# sentences = df['sentence'].fillna(' ')
+# y = df['label'].fillna(' ')
+sentences = df['sentence'].fillna(' ')
+y = df['label'].fillna(' ')
 
-df =  pd.concat(df_list)
 
 from sklearn.model_selection import train_test_split
-df_yelp = df[df['source'] == 'yelp']
-sentences = df_yelp['sentence'].values
-y = df_yelp['label'].values
+
 
 print("-----------------------------get data success")
 
@@ -70,11 +66,12 @@ from keras.models import Sequential
 from keras import layers
 
 input_dim = X_train.shape[1]
+label_dim = y_train.shape[1]
 
 model = Sequential()
 model.add(layers.Dense(10,input_dim=input_dim,activation='relu'))
 #408 是标签向量化后的维度
-model.add(layers.Dense(408,activation='softmax'))
+model.add(layers.Dense(label_dim,activation='softmax'))
 
 model.compile(loss='binary_crossentropy',
               optimizer='adam',

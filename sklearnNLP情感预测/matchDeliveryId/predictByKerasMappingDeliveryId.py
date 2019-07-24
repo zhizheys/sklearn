@@ -27,12 +27,7 @@ def predictInfo(fileInfo):
 
     prediction=model.predict(x_testStr)
     prediction_class=model.predict_classes(x_testStr)
-
     maxSimilar = prediction[0].max()
-    # print('max similar is ', maxSimilar)
-    # print('max similar label Id is: ',prediction[0].argmax())
-    # print('class is',prediction_class)
-
 
     #load 词向量模型
     labelFilePath = open('./vectorizer_matchDeliveryId_labelModel.pkl','rb')
@@ -83,13 +78,13 @@ def createContentInfo2(sender,subject,fileName):
 
 if __name__ == '__main__':
 
-    sender ='multi.client.aibbny@bnymellon.com'
-    subject = 'Invesco STIC EUR Liquidity daily nav/factor/yield information - 03/25/2019'
-    fileName = 'INVESCO _Invesco STIC Global Series EUR_PRICESHEET_II_20190325.xls'
+    # sender ='multi.client.aibbny@bnymellon.com'
+    # subject = 'Invesco STIC EUR Liquidity daily nav/factor/yield information - 03/25/2019'
+    # fileName = 'INVESCO _Invesco STIC Global Series EUR_PRICESHEET_II_20190325.xls'
 
-    # sender = 'Ntebogeng.Mogagabe@investecmail.com'
-    # subject = 'Discovery and Investec Fund Distributions - Mar 2019'
-    # fileName = 'Investec Distributions - Mar 2019.xlsx'
+    sender = 'M.Ilmansyah@bahana.co.id'
+    subject = 'NAV Bahana Trailblazer Fund and Bahana Provident Fund'
+    fileName = 'NAV BTF & BPF.xls'
 
     contentArray = [sender,subject,fileName]
 
