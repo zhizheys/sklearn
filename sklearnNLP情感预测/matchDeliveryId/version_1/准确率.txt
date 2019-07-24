@@ -1,0 +1,62 @@
+
+
+softmax训练结果 测试效果比 sigmoid训练好
+
+sigmoid训练结果：
+Training Accuracy: 0.9997
+Training loss: 0.0010
+Testing Accuracy:  0.9997
+Testing loss: 0.0012
+------------end fit 2019-07-22 09:39:30
+------------save model end
+
+
+softmax训练结果：
+Training Accuracy: 0.9999
+Training loss: 0.0002
+Testing Accuracy:  0.9999
+Testing loss: 0.0005
+------------end fit 2019-07-22 13:33:45
+------------save model end
+
+
+softmax 训练结果：
+
+准确率 0.9827404
+Ntebogeng.Mogagabe@investecmail.com
+Discovery and Investec Fund Distributions - Mar 2019	
+Investec Distributions - Mar 2019.xlsx	
+
+PDG0005141
+
+
+
+sigmoid训练结果：
+
+准确率： 0.9967158
+multi.client.aibbny@bnymellon.com	
+Invesco STIC EUR Liquidity daily nav/factor/yield information - 03/25/2019	
+INVESCO _Invesco STIC Global Series EUR_PRICESHEET_II_20190325.xls	
+
+PDG0011088
+
+
+
+--准确率： 0.029
+swlee@educatorsfinancialgroup.ca	
+
+[Not Virus Scanned] April 30, 2019 Educators Mutual Funds	
+
+Morningstar Educators 04-30-2019 fund report.xlsx	
+
+PDN0008563
+
+
+准确率 0.026234388
+Ntebogeng.Mogagabe@investecmail.com
+Discovery and Investec Fund Distributions - Mar 2019	
+Investec Distributions - Mar 2019.xlsx	
+
+PDG0005141
+
+
