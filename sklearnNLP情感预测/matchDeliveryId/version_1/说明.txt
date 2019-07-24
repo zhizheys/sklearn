@@ -1,10 +1,11 @@
 
 1. 当前版本使用的是keras,    sklearn.feature_extraction.text 自带的 CountVectorizer 向量工具
 
-2. 当前代码对 initial.xlsx 非常匹配， 但是对initial_new.xlsx 和 initial_new_2.xlsx 不适合；
+2. 当前代码对 initial.xlsx 非常匹配， 但是对initial_new.xlsx 和 initial_new_2.xlsx 中有些中文不合适
  
    预测initial.xlsx 的精确度在0.99 左右
-   预测initial_new.xlsx 和 initial_new_2.xlsx 的精确度在0.016 左右
+   预测initial_new.xlsx 和 initial_new_2.xlsx 的英文精度在0.99， 中文精度在0.85，
+   在保存csv 和读取csv时一定要使用utf-8  !!!!
    
    
    

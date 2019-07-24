@@ -92,9 +92,9 @@ if __name__ == '__main__':
 
     # --准确率： 0.026234388  --0.993 --0.030623268
     # id PDG0005141
-    sender = 'Ntebogeng.Mogagabe@investecmail.com'
-    subject = 'Discovery and Investec Fund Distributions - Mar 2019'
-    fileName = 'Investec Distributions - Mar 2019.xlsx'
+    sender = 'lexb@hcmirae.com'
+    subject = '每日净值_2019年06月27日_华宸未来基金管理有限公司'
+    fileName = '每日净值_2019年06月27日_华宸未来基金管理有限公司.xlsx'
 
     contentArray = [sender,subject,fileName]
 

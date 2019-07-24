@@ -5,7 +5,7 @@ import  datetime
 import pandas as pd
 
 filepath = './data.csv'
-df = pd.read_csv(filepath,names=['label','sentence'],sep=',')
+df = pd.read_csv(filepath,names=['label','sentence'],sep=',',encoding='utf-8')
 
 # sentences = df['sentence'].fillna(' ')
 # y = df['label'].fillna(' ')
@@ -22,6 +22,8 @@ sentence_train,sentence_test,y_train_label,y_test_label = train_test_split(sente
 
 #print('train sentence is:',sentence_train)
 #print('train label is:', y_train)
+
+print('-------------------------begin word to vector')
 
 from sklearn.feature_extraction.text import CountVectorizer
 import pickle

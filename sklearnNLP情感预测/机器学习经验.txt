@@ -18,4 +18,13 @@
 	7. output_dim 维度越大越准， 同时训练时间也越久， 建议： 不超过200
 	
 	
+	8. 文档预处理后保存到txt或csv时一定要保存为utf-8,  后面加载csv文件内容时，也一定要使用 utf-8 格式读取 ！！！！， 否则会直接影响准确率,
+	   文档内容读取后要对空内容处理，fillna去空处理
+	
+	
+	filepath = './data.csv'
+	df = pd.read_csv(filepath,names=['label','sentence'],sep=',',encoding='utf-8')
+	sentences = df['sentence'].fillna(' ')
+	y = df['label'].fillna(' ')
+		
 	
