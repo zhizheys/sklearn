@@ -69,9 +69,9 @@ input_dim = X_train.shape[1]
 label_dim = y_train.shape[1]
 
 model = Sequential()
-model.add(layers.Dense(10,input_dim=input_dim,activation='relu'))
+model.add(layers.Dense(output_dim=200,input_dim=input_dim,activation='relu'))
 #408 是标签向量化后的维度
-model.add(layers.Dense(label_dim,activation='softmax'))
+model.add(layers.Dense(output_dim=label_dim,input_dim=input_dim,activation='softmax'))
 
 model.compile(loss='binary_crossentropy',
               optimizer='adam',
@@ -82,10 +82,10 @@ print('------------begin fit',datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%
 
 
 history = model.fit(X_train, y_train,
-				epochs=100,
+				epochs=50,
 				verbose=False,
 				validation_data=(X_test, y_test),
-				batch_size=200)
+				batch_size=150)
 
 loss, accuracy = model.evaluate(X_train, y_train, verbose=False)
 print("Training Accuracy: {:.4f}".format(accuracy))
