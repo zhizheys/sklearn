@@ -1,6 +1,5 @@
 
 import pandas as pd
-import xlrd
 import requests
 import json
 
@@ -27,38 +26,41 @@ class TestRestfulApi:
         return targetData
 
     def post(self,sender,subject,fileName,initDeliveryId):
-        result=''
-        url=''
-        json_data = dict(
-            sender=sender,
-            subject=subject,
-            fileName=fileName
-        )
+        result='yes'
+        predictDeliveryId=''
+        accuracy=0
 
-        headerContent ={
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-        }
+        # url=''
+        # json_data = dict(
+        #     sender=sender,
+        #     subject=subject,
+        #     fileName=fileName
+        # )
+        #
+        # headerContent ={
+        #     'Accept': 'application/json',
+        #     'Content-Type': 'application/json',
+        # }
+        #
+        # response = requests.post(url, headers=headerContent, data=json.dumps(json_data))
+        # print(response.status_code)
+        #
+        # if(response.status_code==200):
+        #     resultContent = response.text
+        #     resultObject = json.loads(resultContent)
+        #     predictDeliveryId = resultObject['deliveryId']
+        #
+        #     if predictDeliveryId == None or predictDeliveryId == '':
+        #         result='deliveryIdIsNull'
+        #     else:
+        #         if initDeliveryId == predictDeliveryId:
+        #             result='equal'
+        #         else:
+        #             result='unequal'
+        # else:
+        #     result='postError'
 
-        response = requests.post(url, headers=headerContent, data=json.dumps(json_data))
-        print(response.status_code)
-
-        if(response.status_code==200):
-            resultContent = response.text
-            resultObject = json.loads(resultContent)
-            predictDeliveryId = resultObject['deliveryId']
-
-            if predictDeliveryId == None or predictDeliveryId == '':
-                result='deliveryIdIsNull'
-            else:
-                if initDeliveryId == predictDeliveryId:
-                    result='equal'
-                else:
-                    result='unequal'
-        else:
-            result='postError'
-
-        return result
+        return result,predictDeliveryId,accuracy
 
     def get(self):
         headerContent = {
@@ -78,6 +80,7 @@ if __name__ == '__main__':
     print('-----------start api')
     test = TestRestfulApi()
     dataArray = test.readExcelData()
+    all_need = []
 
     for item in dataArray:
         sender =item['sender']
@@ -85,9 +88,25 @@ if __name__ == '__main__':
         fileName = item['fileName']
         deliveryId = item['deliveryId']
 
-        result =  test.post(sender,subject,fileName,deliveryId)
+        result,predictDeliveryId,accuracy =  test.post(sender,subject,fileName,deliveryId)
         item['result'] = result
+        item['predictDeliveryId'] = predictDeliveryId
+        item['accuracy'] = accuracy
+        all_need.append(item)
 
-    for item in dataArray:
-        result =item['result']
-        print('result is: ',result)
+    # for item in dataArray:
+    #     result =item['result']
+    #     print('result is: ',result)
+
+    #write to excel
+    df = pd.DataFrame(all_need)  # 必须加[]
+    # pd.concat(df).to_excel("./compare.xlsx", index=False)
+    # print('-------------end')
+
+    # writer = pd.ExcelWriter('./compare.xlsx')
+    # df.to_excel(writer, sheet_name='Data1', startcol=0, index=False)
+
+    #df = pd.DataFrame([['a', 'b'], ['c', 'd']])
+    df.to_excel("./output.xlsx",startcol=0, index=False)  # doctest: +SKIP
+    print('-------------end')
+
