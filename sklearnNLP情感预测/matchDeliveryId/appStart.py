@@ -6,11 +6,11 @@ from matchDeliveryId.predictByKerasMappingDeliveryId import MyPredictByKerasMapp
 if __name__ == '__main__':
 
     print('-------------start app')
-    # prepareData = PrepareData()
-    # prepareData.createStandardFile()
-    # #
-    # model = MatchDeliveryIdModelByKeras()
-    # model.createModel()
+    prepareData = PrepareData()
+    prepareData.createStandardFile()
+    #
+    model = MatchDeliveryIdModelByKeras()
+    model.createModel()
 
     # --准确率： 0.963(sigmoid)  --0.999(init.xlsx)  --0.965(init_new.xlsx)
     # id PDG0015788

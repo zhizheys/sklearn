@@ -107,6 +107,9 @@ if __name__ == '__main__':
 
     #write to excel
     df = pd.DataFrame(all_need)  # 必须加[]
+    cols = ['deliveryId', 'predictDeliveryId', 'result', 'accuracy','sender', 'subject', 'fileName']
+    df = df.ix[:, cols]
+
     df.to_excel("./output.xlsx",startcol=0, index=False)  # doctest: +SKIP
     print('-------------end')
 

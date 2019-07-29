@@ -21,7 +21,7 @@ class MyStringUtil():
 
         stopWordsArray = stopwords.words('english')
 
-        newStopWords = ['morningstar','morningstartnab','txt', 'csv','xls','xlsx','pdf','zip','january','february','march','april',
+        newStopWords = ['morningstar','morningstartnab','template','fund','txt', 'csv','xls','xlsx','pdf','zip','january','february','march','april',
                         'may','june','july','august','september','october','november','december']
 
         stopWordsArray.extend(newStopWords)
