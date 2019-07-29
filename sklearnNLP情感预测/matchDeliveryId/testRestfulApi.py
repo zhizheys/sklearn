@@ -6,7 +6,7 @@ import json
 class TestRestfulApi:
     def readExcelData(self):
         # 按照单元格读取数据
-        df = pd.read_excel("./initial_new.xlsx", sheet_name='Sheet1')
+        df = pd.read_excel("./qaData.xlsx", sheet_name='Sheet1')
         targetData = []
 
         for j in df.index.values:
@@ -30,35 +30,42 @@ class TestRestfulApi:
         predictDeliveryId=''
         accuracy=0
 
-        # url=''
-        # json_data = dict(
-        #     sender=sender,
-        #     subject=subject,
-        #     fileName=fileName
-        # )
-        #
-        # headerContent ={
-        #     'Accept': 'application/json',
-        #     'Content-Type': 'application/json',
-        # }
-        #
-        # response = requests.post(url, headers=headerContent, data=json.dumps(json_data))
-        # print(response.status_code)
-        #
-        # if(response.status_code==200):
-        #     resultContent = response.text
-        #     resultObject = json.loads(resultContent)
-        #     predictDeliveryId = resultObject['deliveryId']
-        #
-        #     if predictDeliveryId == None or predictDeliveryId == '':
-        #         result='deliveryIdIsNull'
-        #     else:
-        #         if initDeliveryId == predictDeliveryId:
-        #             result='equal'
-        #         else:
-        #             result='unequal'
-        # else:
-        #     result='postError'
+        url='http://10.86.16.248:8000/search/'
+        json_data = dict(
+            sender=sender,
+            subject=subject,
+            fileName=fileName
+        )
+
+        headerContent ={
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        }
+
+        response = requests.post(url, headers=headerContent, data=json.dumps(json_data))
+        print(response.status_code)
+
+        if(response.status_code==200):
+            resultContent = response.text
+            resultObject = json.loads(resultContent)
+            apiCode= resultObject['apiCode']
+            message = resultObject['message']
+
+            if apiCode==1:
+                predictDeliveryId = resultObject['deliveryId']
+                accuracy = resultObject['accuracy']
+
+                if predictDeliveryId == None or predictDeliveryId == '':
+                    result='deliveryIdIsNull'
+                else:
+                    if initDeliveryId.lower() ==  predictDeliveryId.lower():
+                        result='equal'
+                    else:
+                        result='unequal'
+            else:
+                print("error",message,sender,subject,fileName,initDeliveryId)
+        else:
+            result='postError'
 
         return result,predictDeliveryId,accuracy
 
@@ -100,13 +107,6 @@ if __name__ == '__main__':
 
     #write to excel
     df = pd.DataFrame(all_need)  # 必须加[]
-    # pd.concat(df).to_excel("./compare.xlsx", index=False)
-    # print('-------------end')
-
-    # writer = pd.ExcelWriter('./compare.xlsx')
-    # df.to_excel(writer, sheet_name='Data1', startcol=0, index=False)
-
-    #df = pd.DataFrame([['a', 'b'], ['c', 'd']])
     df.to_excel("./output.xlsx",startcol=0, index=False)  # doctest: +SKIP
     print('-------------end')
 
