@@ -1,1 +1,4 @@
 /sklearnNLP情感预测/.idea
+/sklearnNLP情感预测/matchDeliveryId/model_keras_matchDeliveryId.h5
+/sklearnNLP情感预测/matchDeliveryId/*.pkl
+/sklearnNLP情感预测/matchDeliveryId/vectorizer_matchDeliveryId_wordModel.pkl
