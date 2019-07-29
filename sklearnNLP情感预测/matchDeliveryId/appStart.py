@@ -8,7 +8,7 @@ if __name__ == '__main__':
     print('-------------start app')
     # prepareData = PrepareData()
     # prepareData.createStandardFile()
-    #
+    # #
     # model = MatchDeliveryIdModelByKeras()
     # model.createModel()
 
@@ -20,9 +20,9 @@ if __name__ == '__main__':
 
     # --准确率： 0.029  --0.96 --error
     # id PDN0008563
-    sender = 'scarter@sscinc.com'
-    subject = '[Not Virus Scanned] SWMC Small Cap European Fund'
-    fileName = 'SWMC Small Cap European Fund Price File as at 25.06.2019.xlsx'
+    sender = 'niclas.roken@alcur.se'
+    subject = 'ALCUR FONDER performance updates.xls'
+    fileName = 'ALCUR FONDER performance updates.xls'
 
     # --准确率： 0.026234388  --0.993 --0.030623268
     # id PDG0005141

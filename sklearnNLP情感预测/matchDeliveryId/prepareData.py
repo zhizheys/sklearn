@@ -21,7 +21,7 @@ class PrepareData():
         #print(senderColumn)
 
         #按照单元格读取数据
-        df=pd.read_excel("./initial_new.xlsx",sheet_name='Sheet1')
+        df=pd.read_excel("./allDataFile.xlsx",sheet_name='Sheet1')
         targetData=[]
         myStringUtil = MyStringUtil()
 
