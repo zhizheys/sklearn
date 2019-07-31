@@ -35,7 +35,7 @@ class MatchDeliveryIdModelByKeras():
         import pickle
 
         vectorizer = CountVectorizer()
-        vectorizer.fit(sentence_train)
+        vectorizer.fit(list(sentence_train) + list(sentence_test))
 
         # 保存经过fit的vectorizer 词向量模型,预测时用来对文字词向量化
         feature_path = './vectorizer_matchDeliveryId_wordModel.pkl'
