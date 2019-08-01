@@ -1,0 +1,6 @@
+
+
+1. 通过 Tokenizer 预处理文字内容， Tokenizer只是编码， 使用keras embed 将词向量化
+
+1. 通过keras, textCnn进行delivery id预测
+
