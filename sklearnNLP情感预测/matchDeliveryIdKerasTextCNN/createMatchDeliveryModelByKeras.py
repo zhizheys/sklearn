@@ -50,8 +50,8 @@ class MatchDeliveryIdModelByKeras():
         x_test_word_ids = tokenizer.texts_to_sequences(x_test)
         # 序列模式
         # 每条样本长度不唯一，将每条样本的长度设置一个固定值
-        x_train_padded_seqs = pad_sequences(x_train_word_ids, maxlen=500)  # 将超过固定值的部分截掉，不足的在最前面用0填充
-        x_test_padded_seqs = pad_sequences(x_test_word_ids, maxlen=500)
+        x_train_padded_seqs = pad_sequences(x_train_word_ids, maxlen=50)  # 将超过固定值的部分截掉，不足的在最前面用0填充
+        x_test_padded_seqs = pad_sequences(x_test_word_ids, maxlen=50)
 
 
         #--------------------------
@@ -62,9 +62,9 @@ class MatchDeliveryIdModelByKeras():
     def textCNN_model(self,x_train_padded_seqs, y_train, x_test_padded_seqs, y_test):
         print("-------------begin create text cnn model")
 
-        main_input = Input(shape=(500,), dtype='float64')
+        main_input = Input(shape=(50,), dtype='float64')
         # 词嵌入（使用预训练的词向量）
-        embedder = Embedding(len(self.vocab) + 1, 300, input_length=500, trainable=False)
+        embedder = Embedding(len(self.vocab) + 1, 300, input_length=50, trainable=False)
         embed = embedder(main_input)
         # 词窗大小分别为3,4,5
         cnn1 = Conv1D(256, 3, padding='same', strides=1, activation='relu')(embed)
@@ -95,11 +95,13 @@ class MatchDeliveryIdModelByKeras():
 
         model.fit(x_train_padded_seqs, y_train, batch_size=150, epochs=10)
 
+        print("-------------model train success")
+
         # y_test_onehot = keras.utils.to_categorical(y_test, num_classes=3)  # 将标签转换为one-hot编码
         result = model.predict(x_test_padded_seqs)  # 预测样本属于每个类别的概率
         result_labels = np.argmax(result, axis=1)  # 获得最大概率对应的标签
         y_predict = list(map(str, result_labels))
 
-        print('准确率', metrics.accuracy_score(y_test, y_predict))
-        print('平均f1-score:', metrics.f1_score(y_test, y_predict, average='weighted'))
+        #print('准确率', metrics.accuracy_score(y_test, y_predict))
+        #print('平均f1-score:', metrics.f1_score(y_test, y_predict, average='weighted'))
 

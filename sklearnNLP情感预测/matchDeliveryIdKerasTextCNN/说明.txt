@@ -4,3 +4,11 @@
 
 1. 通过keras, textCnn进行delivery id预测
 
+
+2. 训练过程总结：
+
+ (1). 使用text cnn 训练时，标签的向量化要使用LabelEncoder
+
+ （2） pad_sequences中 maxlen 的值参数大小很重要，
+      当maxlen 为500时，loss 为5.5， accuarcy 为0.14
+      当maxlen 为50时，loss 为0.09， accuarcy 为0.96
